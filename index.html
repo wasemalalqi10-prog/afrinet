@@ -307,6 +307,29 @@ nav li:hover>a,nav li>a.on{color:#fff;background:rgba(0,204,255,.12);border-colo
 .dots{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);margin:0;z-index:3;background:rgba(5,26,51,.5);backdrop-filter:blur(6px);box-shadow:none}
 .dt{background:rgba(255,255,255,.45)}.dt b{background:var(--acc)}
 @media(max-width:860px){.hero{padding:0;min-height:max(340px,64vh)}.hero .bgs{width:auto;height:auto;min-height:0;border-radius:0;border-width:0}}
+/* v7: organic curve hero */
+.hero{display:block;padding:0;min-height:max(500px,calc(100vh - 118px));min-height:max(500px,calc(100svh - 118px));background:linear-gradient(180deg,#f2f9fd,rgba(255,255,255,.35))}
+.hero::before{display:block;content:"";position:absolute;left:calc(54% - 46px);right:auto;top:12%;bottom:12%;width:100px;height:auto;aspect-ratio:auto;transform:none;border:0;border-radius:0 130px 130px 0;background:var(--acc);opacity:.35;z-index:0}
+.hero .bgs,.hero .bgs:hover{position:absolute;left:0;right:auto;top:0;bottom:0;width:54%;height:auto;border-radius:0 130px 130px 0;z-index:1}
+.hero .wrap{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;position:relative;z-index:2;min-height:max(500px,calc(100vh - 118px));min-height:max(500px,calc(100svh - 118px))}
+.hero .wrap>*{max-width:40%}
+.hero .sw,.hero .scroll{display:none}
+.hero h1{color:#082a4d;text-shadow:none;font-size:clamp(30px,4.2vw,56px);margin:0 0 6px}
+.hero h1 span{color:var(--blue)}.hero .en{color:#7b8a99;margin-bottom:6px}.hero p{color:var(--mut);margin:14px 0 28px;font-size:18px}
+.hero .btn{background:var(--blue);color:#fff;box-shadow:0 6px 0 #00577f,0 16px 26px rgba(0,87,127,.28)}
+.hero .btn:hover{box-shadow:0 9px 0 #00577f,0 22px 30px rgba(0,87,127,.3)}.hero .btn:active{box-shadow:0 1px 0 #00577f}
+.dots{left:27%;bottom:28px}
+[dir=ltr] .hero::before{left:auto;right:calc(54% - 46px);border-radius:130px 0 0 130px}
+[dir=ltr] .hero .bgs,[dir=ltr] .hero .bgs:hover{left:auto;right:0;border-radius:130px 0 0 130px}
+[dir=ltr] .dots{left:73%}
+@media(max-width:860px){
+.hero{min-height:0}
+.hero::before{display:none}
+.hero .bgs,.hero .bgs:hover,[dir=ltr] .hero .bgs,[dir=ltr] .hero .bgs:hover{position:relative;left:0;right:0;top:auto;bottom:auto;width:100%;height:62vw;min-height:250px;border-radius:0 0 70px 70px}
+.hero .wrap{min-height:0;align-items:center;text-align:center;padding:30px 20px 46px}
+.hero .wrap>*{max-width:100%}
+.dots,[dir=ltr] .dots{left:50%;top:calc(max(250px,62vw) - 52px);bottom:auto}
+}
 </style>
 </head>
 <body>
