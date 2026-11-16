@@ -353,6 +353,10 @@ nav li:hover>a,nav li>a.on{color:#fff;background:rgba(0,204,255,.12);border-colo
 .gc{padding:24px 22px 28px}
 .dots,[dir=ltr] .dots{left:50%;top:auto;bottom:62px}
 }
+/* v9: images only, 5s */
+.hero .wrap,.hero .gc{display:none!important}
+.hero .bgs::after,[dir=ltr] .hero .bgs::after{display:none!important}
+.dt.on b{animation:pg 5s linear forwards}
 </style>
 </head>
 <body>
@@ -556,7 +560,7 @@ const s3=`<rect width='1600' height='900' fill='url(#a)'/>${DT(40)}${[140,260,38
 const pn=[[300,300],[700,520],[1100,260],[1350,640],[900,140]];
 const s4=`<rect width='1600' height='900' fill='url(#b)'/>${Array.from({length:240},(_,i)=>`<circle cx='${(i%20)*84+30}' cy='${Math.floor(i/20)*76+30}' r='3' fill='#9fe6ff' opacity='.35'/>`).join('')}<path d='M${pn.map(p=>p.join(' ')).join('L')}' fill='none' stroke='#00ccff' stroke-width='3' stroke-dasharray='14 12' opacity='.8'/>${pn.map(p=>RP(p[0],p[1],[44,86,130],'#00ccff')+`<circle cx='${p[0]}' cy='${p[1]}' r='11' fill='#fff'/>`).join('')}${LG(1180,60,3,.28,'#fff')}`;
 const IMGS=[s1,s2,s3,s4].map(URI);
-document.querySelectorAll('.sl').forEach((s,si)=>{while(s.children.length<Math.min(IMGS.length,8))s.appendChild(document.createElement('i'));const k=[...s.children];k.forEach((el,i)=>{if(IMGS.length)el.style.backgroundImage='url("'+IMGS[(i+si)%IMGS.length]+'")'});let c=si%k.length,t;const bg=s.classList.contains('bgs'),dots=$('#dots');const go=n=>{k.forEach(e=>e.classList.remove('prev'));const o=k[c];if(o.classList.contains('on')){o.classList.remove('on');o.classList.add('prev')}c=(n+k.length)%k.length;k[c].classList.remove('prev');k[c].classList.add('on');if(bg)[...dots.children].forEach((d,i)=>{d.classList.remove('on');if(i===c){void d.offsetWidth;d.classList.add('on')}});clearInterval(t);t=setInterval(()=>go(c+1),2000)};if(bg){dots.innerHTML=k.map((_,i)=>`<button class='dt' aria-label='${i+1}'><b></b></button>`).join('');[...dots.children].forEach((d,i)=>d.onclick=()=>go(i))}go(c)});
+document.querySelectorAll('.sl').forEach((s,si)=>{while(s.children.length<Math.min(IMGS.length,8))s.appendChild(document.createElement('i'));const k=[...s.children];k.forEach((el,i)=>{if(IMGS.length)el.style.backgroundImage='url("'+IMGS[(i+si)%IMGS.length]+'")'});let c=si%k.length,t;const bg=s.classList.contains('bgs'),dots=$('#dots');const go=n=>{k.forEach(e=>e.classList.remove('prev'));const o=k[c];if(o.classList.contains('on')){o.classList.remove('on');o.classList.add('prev')}c=(n+k.length)%k.length;k[c].classList.remove('prev');k[c].classList.add('on');if(bg)[...dots.children].forEach((d,i)=>{d.classList.remove('on');if(i===c){void d.offsetWidth;d.classList.add('on')}});clearInterval(t);t=setInterval(()=>go(c+1),5000)};if(bg){dots.innerHTML=k.map((_,i)=>`<button class='dt' aria-label='${i+1}'><b></b></button>`).join('');[...dots.children].forEach((d,i)=>d.onclick=()=>go(i))}go(c)});
 render2();
 (()=>{const hr=$('.hero'),st=$('#stage');
  hr.addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;const r=hr.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;st.style.transform='rotateX('+(-y*28)+'deg) rotateY('+(x*36)+'deg)'});
