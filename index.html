@@ -357,6 +357,16 @@ nav li:hover>a,nav li>a.on{color:#fff;background:rgba(0,204,255,.12);border-colo
 .hero .wrap,.hero .gc{display:none!important}
 .hero .bgs::after,[dir=ltr] .hero .bgs::after{display:none!important}
 .dt.on b{animation:pg 5s linear forwards}
+/* v10: transparent nav over hero, solid on scroll */
+nav{position:fixed;left:0;right:0;top:40px;width:auto;background:transparent;box-shadow:none;border-bottom:2px solid transparent;transition:background .35s,box-shadow .35s,border-color .35s}
+nav::before{content:"";position:absolute;left:0;right:0;top:0;bottom:-34px;background:linear-gradient(rgba(5,26,51,.6),rgba(5,26,51,0));z-index:-1;pointer-events:none;transition:opacity .35s}
+nav.sc{background:#fff;box-shadow:0 10px 32px rgba(8,42,77,.14);border-bottom-color:var(--acc)}
+nav.sc::before{opacity:0}
+nav.sc .brand{color:var(--blue)}nav.sc .brand small{color:#6b7280}nav.sc .burger{color:var(--blue-d)}
+@media(min-width:861px){nav.sc li>a{color:#1d2b3a}nav.sc li:hover>a,nav.sc li>a.on{color:var(--blue);background:rgba(0,134,203,.08)}}
+#detail{padding-top:84px}
+.hero{min-height:max(520px,calc(100vh - 40px));min-height:max(520px,calc(100svh - 40px))}
+@media(max-width:860px){.hero{min-height:max(520px,78vh)}}
 </style>
 </head>
 <body>
@@ -561,6 +571,7 @@ const pn=[[300,300],[700,520],[1100,260],[1350,640],[900,140]];
 const s4=`<rect width='1600' height='900' fill='url(#b)'/>${Array.from({length:240},(_,i)=>`<circle cx='${(i%20)*84+30}' cy='${Math.floor(i/20)*76+30}' r='3' fill='#9fe6ff' opacity='.35'/>`).join('')}<path d='M${pn.map(p=>p.join(' ')).join('L')}' fill='none' stroke='#00ccff' stroke-width='3' stroke-dasharray='14 12' opacity='.8'/>${pn.map(p=>RP(p[0],p[1],[44,86,130],'#00ccff')+`<circle cx='${p[0]}' cy='${p[1]}' r='11' fill='#fff'/>`).join('')}${LG(1180,60,3,.28,'#fff')}`;
 const IMGS=[s1,s2,s3,s4].map(URI);
 document.querySelectorAll('.sl').forEach((s,si)=>{while(s.children.length<Math.min(IMGS.length,8))s.appendChild(document.createElement('i'));const k=[...s.children];k.forEach((el,i)=>{if(IMGS.length)el.style.backgroundImage='url("'+IMGS[(i+si)%IMGS.length]+'")'});let c=si%k.length,t;const bg=s.classList.contains('bgs'),dots=$('#dots');const go=n=>{k.forEach(e=>e.classList.remove('prev'));const o=k[c];if(o.classList.contains('on')){o.classList.remove('on');o.classList.add('prev')}c=(n+k.length)%k.length;k[c].classList.remove('prev');k[c].classList.add('on');if(bg)[...dots.children].forEach((d,i)=>{d.classList.remove('on');if(i===c){void d.offsetWidth;d.classList.add('on')}});clearInterval(t);t=setInterval(()=>go(c+1),5000)};if(bg){dots.innerHTML=k.map((_,i)=>`<button class='dt' aria-label='${i+1}'><b></b></button>`).join('');[...dots.children].forEach((d,i)=>d.onclick=()=>go(i))}go(c)});
+(()=>{const nv=$('nav'),ts=$('.ts'),f=()=>{const y=scrollY,h=ts.offsetHeight;nv.style.top=Math.max(0,h-y)+'px';nv.classList.toggle('sc',y>h*.75||!$('#detail').hidden)};addEventListener('scroll',f,{passive:true});addEventListener('hashchange',f);addEventListener('resize',f);f()})();
 render2();
 (()=>{const hr=$('.hero'),st=$('#stage');
  hr.addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;const r=hr.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;st.style.transform='rotateX('+(-y*28)+'deg) rotateY('+(x*36)+'deg)'});
