@@ -330,6 +330,29 @@ nav li:hover>a,nav li>a.on{color:#fff;background:rgba(0,204,255,.12);border-colo
 .hero .wrap>*{max-width:100%}
 .dots,[dir=ltr] .dots{left:50%;top:calc(max(250px,62vw) - 52px);bottom:auto}
 }
+/* v8: full image + wave edge + glass card */
+.hero{display:block;padding:0;background:#0b3d68;min-height:max(520px,calc(100vh - 118px));min-height:max(520px,calc(100svh - 118px))}
+.hero::before{display:none}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:clamp(50px,8vw,110px);z-index:2;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23fff' fill-opacity='.45' d='M0 50C260 0 520 0 760 40S1200 95 1440 20V120H0z'/%3E%3Cpath fill='%23fff' d='M0 75C240 15 480 15 720 60S1200 115 1440 45V120H0z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+.hero .bgs,.hero .bgs:hover,[dir=ltr] .hero .bgs,[dir=ltr] .hero .bgs:hover{position:absolute;inset:0;left:0;right:0;top:0;bottom:0;width:auto;height:auto;border-radius:0;z-index:1}
+.hero .bgs::after{content:"";display:block;position:absolute;inset:0;z-index:5;background:linear-gradient(to left,rgba(5,26,51,.58),rgba(5,26,51,.06))}
+[dir=ltr] .hero .bgs::after{background:linear-gradient(to right,rgba(5,26,51,.58),rgba(5,26,51,.06))}
+.hero .wrap{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;position:relative;z-index:3;min-height:max(520px,calc(100vh - 118px));min-height:max(520px,calc(100svh - 118px));padding-bottom:clamp(50px,8vw,110px)}
+.hero .wrap>.gc{max-width:min(470px,100%)}
+.gc{background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.34);border-radius:24px;padding:34px 34px 38px;box-shadow:0 30px 60px rgba(5,26,51,.35)}
+.hero h1{color:#fff;font-size:clamp(28px,4vw,50px);text-shadow:0 6px 24px rgba(0,0,0,.3)}.hero h1 span{color:var(--acc)}
+.hero .en{color:#cfe9f7}.hero p{color:#e6f4fb}
+.hero .btn{background:var(--acc);color:#05324a;box-shadow:0 6px 0 #0093b8,0 18px 32px rgba(0,204,255,.35)}
+.hero .btn:hover{box-shadow:0 9px 0 #0093b8,0 24px 38px rgba(0,204,255,.42)}.hero .btn:active{box-shadow:0 1px 0 #0093b8}
+.dots,[dir=ltr] .dots{left:50%;top:auto;bottom:calc(clamp(50px,8vw,110px) + 14px)}
+@media(max-width:860px){
+.hero{min-height:max(520px,78vh)}
+.hero .bgs,.hero .bgs:hover,[dir=ltr] .hero .bgs,[dir=ltr] .hero .bgs:hover{position:absolute;inset:0;left:0;right:0;top:0;bottom:0;width:auto;height:auto;min-height:0;border-radius:0}
+.hero .bgs::after,[dir=ltr] .hero .bgs::after{background:rgba(5,26,51,.4)}
+.hero .wrap{min-height:max(520px,78vh);align-items:center;justify-content:center;text-align:center;padding:30px 18px 110px}
+.gc{padding:24px 22px 28px}
+.dots,[dir=ltr] .dots{left:50%;top:auto;bottom:62px}
+}
 </style>
 </head>
 <body>
@@ -389,10 +412,10 @@ nav li:hover>a,nav li>a.on{color:#fff;background:rgba(0,204,255,.12);border-colo
  <svg class="lines" viewBox="0 0 1200 500" preserveAspectRatio="none"><g stroke="#bfe6f7" stroke-width="2" fill="none"><path d="M0 120h300l40 40h200M0 200h220l30-30h160M900 90h300M860 90l-30 30h-120M1200 330h-280l-40 40h-220M0 400h180l30 30h200"/></g><g fill="#00ccff"><circle cx="540" cy="160" r="5"/><circle cx="410" cy="170" r="5"/><circle cx="710" cy="120" r="5"/><circle cx="700" cy="370" r="5"/><circle cx="410" cy="430" r="5"/></g></svg>
  <div class="wrap">
   <div class="sw"><div class="stage" id="stage"><div class="orb"><i class="rg r1"></i><i class="rg r2"></i><i class="rg r3"></i></div><svg class="big"><use href="#logo"/></svg><div class="chip c1"><svg class="i"><use href="#wifi"/></svg>Wi-Fi</div><div class="chip c2"><svg class="i"><use href="#globe"/></svg>24/7</div><div class="chip c3"><svg class="i"><use href="#ok"/></svg>100 Mbps</div></div></div>
-  <h1>الأفريقية <span>للاتصالات والتقنية</span></h1>
+  <div class="gc"><h1>الأفريقية <span>للاتصالات والتقنية</span></h1>
   <div class="en">AL-AFRIQIA TELECOM &amp; TECHNOLOGY</div>
   <p>اتصال أسرع، وتقنية أقرب إليك. حلول إنترنت متكاملة للمنازل والشركات والمقاهي.</p>
-  <button class="btn" id="join" type="button">انضم إلينا<svg class="i"><use href="#arr"/></svg></button>
+  <button class="btn" id="join" type="button">انضم إلينا<svg class="i"><use href="#arr"/></svg></button></div>
   <a class="scroll" href="#services" aria-label="التالي"><svg class="i" style="width:34px;height:34px"><use href="#down"/></svg></a>
  </div>
 </section>
